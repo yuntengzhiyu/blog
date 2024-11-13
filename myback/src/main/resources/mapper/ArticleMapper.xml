@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.ArticleMapper">
+    <select id="getArticle" resultType="com.example.demo.pojo.Article">
+        select * from article
+        where id = #{id}
+    </select>
+
+    <select id="getArticleByClassify" resultType="com.example.demo.pojo.Article">
+        select * from article
+        where classify = #{classify}
+    </select>
+
+    <select id="getAllArticle" resultType="com.example.demo.pojo.Article">
+        select * from article
+    </select>
+
+    <select id="getAllArticle2" resultType="com.example.demo.pojo.ArticleNoContent">
+        select id,title,time,content,classify,tag,author
+        from article
+    </select>
+
+    <delete id="deleteArticle" parameterType="_int">
+        delete from article
+        where id=#{id}
+    </delete>
+
+    <update id="updateArticle">
+        update article
+        set title = #{title},tag = #{tag}, classify=#{classify}, content=#{content}
+        where id = #{id}
+    </update>
+
+    <insert id="addArticle">
+        insert into article(title, time, content, classify, tag, author)
+        values(#{title},#{time},#{content},#{classify},#{tag},#{author})
+    </insert>
+</mapper>
